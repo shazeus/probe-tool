@@ -10,3 +10,11 @@ build/
 .venv/
 venv/
 *.env
+.env
+.DS_Store
+*.pem
+*.key
+*.crt
+htmlcov/
+.coverage
+coverage.xml
