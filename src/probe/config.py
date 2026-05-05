@@ -4,6 +4,7 @@ import json
 import os
 from datetime import datetime
 from pathlib import Path
+from typing import Optional
 
 DEFAULT_CONFIG = {
     "timeout": 10,
@@ -85,7 +86,7 @@ def list_sessions() -> list[dict]:
     return sessions
 
 
-def load_session(session_id: str) -> dict | None:
+def load_session(session_id: str) -> Optional[dict]:
     for session in list_sessions():
         if session.get("id") == session_id:
             return session

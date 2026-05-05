@@ -1,5 +1,7 @@
 from __future__ import annotations
 from contextlib import asynccontextmanager
+from typing import Optional
+
 import httpx
 from probe.config import get_setting
 
@@ -12,7 +14,7 @@ def default_headers() -> dict:
 
 
 @asynccontextmanager
-async def async_client(timeout: float | None = None, follow_redirects: bool = True):
+async def async_client(timeout: Optional[float] = None, follow_redirects: bool = True):
     t = timeout if timeout is not None else float(get_setting("timeout"))
     async with httpx.AsyncClient(
         timeout=t,
@@ -23,11 +25,11 @@ async def async_client(timeout: float | None = None, follow_redirects: bool = Tr
         yield client
 
 
-async def get(url: str, params: dict | None = None, timeout: float | None = None) -> httpx.Response:
+async def get(url: str, params: Optional[dict] = None, timeout: Optional[float] = None) -> httpx.Response:
     async with async_client(timeout=timeout) as client:
         return await client.get(url, params=params)
 
 
-async def post(url: str, data: dict | None = None, timeout: float | None = None) -> httpx.Response:
+async def post(url: str, data: Optional[dict] = None, timeout: Optional[float] = None) -> httpx.Response:
     async with async_client(timeout=timeout) as client:
         return await client.post(url, data=data)

@@ -1,5 +1,6 @@
 from __future__ import annotations
 from pathlib import Path
+from typing import Optional
 
 _WORDLISTS_DIR = Path(__file__).parent.parent / "wordlists"
 
@@ -16,7 +17,7 @@ def load_bundled(name: str) -> list[str]:
     return load_wordlist(str(_WORDLISTS_DIR / name))
 
 
-def resolve_wordlist(custom: str | None, bundled_name: str) -> list[str]:
+def resolve_wordlist(custom: Optional[str], bundled_name: str) -> list[str]:
     if custom:
         return load_wordlist(custom)
     return load_bundled(bundled_name)
