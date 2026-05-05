@@ -2,6 +2,8 @@
 
 `probe` is a multi-module security testing CLI for CTF practice and authorized security learning.
 
+<img width="1555" height="828" alt="demo" src="https://github.com/user-attachments/assets/2d8595f1-31bc-45a6-9401-c49c9f317a01" />
+
 ## Install
 
 ```bash
