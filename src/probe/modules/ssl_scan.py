@@ -2,7 +2,6 @@ from __future__ import annotations
 import ssl
 import socket
 from datetime import datetime, timezone
-from typing import Optional
 
 import typer
 from cryptography import x509
