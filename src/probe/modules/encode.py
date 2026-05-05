@@ -2,7 +2,6 @@ from __future__ import annotations
 import base64
 import binascii
 import codecs
-from typing import Optional
 from urllib.parse import quote, unquote
 
 import typer
