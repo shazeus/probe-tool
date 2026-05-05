@@ -1,5 +1,3 @@
-import json
-import os
 import pytest
 from pathlib import Path
 
@@ -43,6 +41,7 @@ def test_save_and_list_sessions(probe_dir):
     from probe.config import new_session, save_session, list_sessions
     s = new_session("example.com", ["web"])
     save_session(s)
+    assert s["finished"] is not None
     sessions = list_sessions()
     assert len(sessions) == 1
     assert sessions[0]["target"] == "example.com"
@@ -64,3 +63,15 @@ def test_add_finding(probe_dir):
     assert len(s["findings"]) == 1
     assert s["findings"][0]["severity"] == "HIGH"
     assert s["findings"][0]["detail"] == "error in query"
+    assert s["findings"][0]["module"] == "web"
+    assert s["findings"][0]["type"] == "sqli"
+
+
+def test_load_session_not_found(probe_dir):
+    from probe.config import load_session
+    assert load_session("nonexistent-id") is None
+
+
+def test_list_sessions_empty(probe_dir):
+    from probe.config import list_sessions
+    assert list_sessions() == []
