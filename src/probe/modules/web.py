@@ -6,7 +6,7 @@ from urllib.parse import urljoin
 import typer
 from bs4 import BeautifulSoup
 
-from probe.config import new_session, save_session, add_finding, get_setting
+from probe.config import new_session, save_session, add_finding
 from probe.utils.display import print_findings_table, console as rich_console, print_finding
 from probe.utils.http import async_client
 from probe.utils.wordlist import resolve_wordlist
