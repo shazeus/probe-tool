@@ -22,7 +22,7 @@ def parse_dns_records(answers, record_type: str) -> list[dict]:
 
 
 async def resolve_subdomain(fqdn: str) -> Optional[str]:
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
     try:
         answers = await loop.run_in_executor(None, dns.resolver.resolve, fqdn, "A")
         return answers[0].to_text()
