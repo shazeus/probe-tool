@@ -4,13 +4,11 @@ import re
 from typing import Optional
 
 import typer
-from rich.console import Console
 
 from probe.utils.display import print_panel, console as rich_console
 from probe.utils.wordlist import load_wordlist
 
 app = typer.Typer(help="Hash identification, cracking, and generation")
-console = Console()
 
 _HASH_PATTERNS = [
     ("MD5",     r"^[a-f0-9]{32}$"),
@@ -54,7 +52,7 @@ def crack_hash(h: str, wordlist_path: str, hash_type: Optional[str] = None) -> O
             candidate = hashlib.new(ht, word.encode()).hexdigest()
             if candidate == h:
                 return word
-        except Exception:
+        except ValueError:
             continue
     return None
 
