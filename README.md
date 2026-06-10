@@ -15,7 +15,7 @@ For local development:
 ```bash
 pip install -e ".[dev]"
 ```
-
+ 
 ## Usage
 
 ```bash
