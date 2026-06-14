@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import typer
 
+from probe import __version__
 from probe.config import load_config, set_setting
 from probe.modules import cred, encode, fuzz, hash, jwt_scan, network, osint, report, ssl_scan, web
 from probe.utils.display import console as rich_console, print_panel
@@ -10,6 +11,7 @@ app = typer.Typer(
     name="probe",
     help="probe - multi-module penetration testing CLI",
     no_args_is_help=True,
+    add_completion=False,
 )
 config_app = typer.Typer(help="Manage probe configuration")
 
@@ -24,6 +26,21 @@ app.add_typer(jwt_scan.app, name="jwt")
 app.add_typer(fuzz.app, name="fuzz")
 app.add_typer(report.app, name="report")
 app.add_typer(config_app, name="config")
+
+
+@app.callback(invoke_without_command=True)
+def main(
+    version: bool = typer.Option(
+        False,
+        "--version",
+        help="Show the installed probe version and exit.",
+        is_eager=True,
+    ),
+) -> None:
+    """Top-level CLI options."""
+    if version:
+        rich_console.print(f"probe, version {__version__}")
+        raise typer.Exit()
 
 
 @config_app.command("show")

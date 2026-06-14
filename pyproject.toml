@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "probe-tool"
-version = "0.1.0"
+version = "0.1.1"
 description = "A comprehensive multi-OS penetration testing CLI for CTF and security learning"
 readme = "README.md"
 license = "MIT"
